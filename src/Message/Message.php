@@ -397,7 +397,7 @@ class Message implements MessageInterface, Countable, ArrayAccess, Iterator, Arr
      * @throws ClientException
      * @throws Exception
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         trigger_error(
             "Array access for " . get_class($this) . " is deprecated, please use getter methods",
@@ -456,8 +456,9 @@ class Message implements MessageInterface, Countable, ArrayAccess, Iterator, Arr
     /**
      * @throws Exception
      */
-    public function current()
+    public function current(): mixed
     {
+        // foo bar baz
         if (!isset($this->response)) {
             return null;
         }
@@ -471,7 +472,7 @@ class Message implements MessageInterface, Countable, ArrayAccess, Iterator, Arr
         $this->current++;
     }
 
-    public function key()
+    public function key(): mixed
     {
         if (!isset($this->response)) {
             return null;
@@ -483,10 +484,10 @@ class Message implements MessageInterface, Countable, ArrayAccess, Iterator, Arr
     /**
      * @throws Exception
      */
-    public function valid(): ?bool
+    public function valid(): bool
     {
         if (!isset($this->response)) {
-            return null;
+            return false;
         }
 
         $data = $this->getResponseData();

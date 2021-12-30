@@ -28,7 +28,7 @@ abstract class AbstractCredentials implements CredentialsInterface
         return isset($this->credentials[$offset]);
     }
 
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->credentials[$offset];
     }
